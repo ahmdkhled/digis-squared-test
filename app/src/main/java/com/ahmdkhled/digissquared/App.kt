@@ -9,16 +9,18 @@ import com.ahmdkhled.digissquared.dagger.DaggerMainActivityComponent
 @Suppress("DEPRECATION")
 class App :Application() {
 
-    private lateinit var daggerMainActivityComponent :MainActivityComponent
+    lateinit var mainActivityComponent:MainActivityComponent
 
     override fun onCreate() {
         super.onCreate()
 
-        daggerMainActivityComponent= DaggerMainActivityComponent.builder()
+        mainActivityComponent= DaggerMainActivityComponent.builder()
             .apiClientModule(ApiClientModule())
             .appModule(AppModule(this))
             .build()
     }
+
+
 
 
 }
