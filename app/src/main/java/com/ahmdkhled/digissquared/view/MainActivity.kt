@@ -50,7 +50,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        chartHelper.setupGraph(binding.chart1,0f,0f)
+        chartHelper.setupGraph(binding.chart1,-140f,-60f)
+        chartHelper.setupGraph(binding.chart2,-30f,0f)
+        chartHelper.setupGraph(binding.chart3,-10f,30f)
         pullFromServer()
 
 
@@ -67,12 +69,24 @@ class MainActivity : AppCompatActivity() {
 
                 if (res.success&&!res.loading){
                     val signalRes=res.res
-                    if (signalRes?.RSRP!=null)
-                    chartHelper.addEntry(binding.chart1, signalRes.RSRP.toFloat(),0)
-                    if (signalRes?.RSRQ!=null)
-                    chartHelper.addEntry(binding.chart1,signalRes.RSRQ.toFloat(),1)
-                    if (signalRes?.SINR!=null)
-                    chartHelper.addEntry(binding.chart1,signalRes.SINR.toFloat(),2)
+                    if (signalRes?.RSRP!=null){
+                        chartHelper.addEntry(binding.chart1, signalRes.RSRP.toFloat(),0)
+                        chartHelper.addEntry(binding.chart2, signalRes.RSRP.toFloat(),0)
+                        chartHelper.addEntry(binding.chart3, signalRes.RSRP.toFloat(),0)
+
+                    }
+                    if (signalRes?.RSRQ!=null){
+                        chartHelper.addEntry(binding.chart1,signalRes.RSRQ.toFloat(),1)
+                        chartHelper.addEntry(binding.chart2,signalRes.RSRQ.toFloat(),1)
+                        chartHelper.addEntry(binding.chart3,signalRes.RSRQ.toFloat(),1)
+
+                    }
+                    if (signalRes?.SINR!=null){
+                        chartHelper.addEntry(binding.chart1,signalRes.SINR.toFloat(),2)
+                        chartHelper.addEntry(binding.chart2,signalRes.SINR.toFloat(),2)
+                        chartHelper.addEntry(binding.chart3,signalRes.SINR.toFloat(),2)
+
+                    }
                 }
 
             })

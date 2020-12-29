@@ -77,8 +77,8 @@ class ChartHelper {
         //signal axis |
         val leftAxis: YAxis = graph.getAxisLeft()
         leftAxis.textColor = Color.WHITE
-        leftAxis.axisMaximum = -60f
-        leftAxis.axisMinimum = -140f
+        leftAxis.axisMaximum = max
+        leftAxis.axisMinimum = min
         leftAxis.setDrawGridLines(true)
         leftAxis.gridColor = Color.WHITE
 
