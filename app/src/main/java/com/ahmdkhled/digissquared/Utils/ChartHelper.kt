@@ -48,7 +48,7 @@ class ChartHelper {
         graph.setScaleEnabled(true)
         graph.setDrawGridBackground(false)
         graph.setPinchZoom(true)
-        graph.setBackgroundColor(Color.GRAY)
+        graph.setBackgroundColor(Color.parseColor("#673AB7"))
         val data = LineData()
         data.setValueTextColor(Color.WHITE)
         graph.setData(data)

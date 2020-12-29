@@ -7,9 +7,13 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:context=".view.MainActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".view.MainActivity">
 
        <com.github.mikephil.charting.charts.LineChart
@@ -17,22 +21,23 @@
            android:layout_height="200dp"
            android:id="@+id/chart1"
            app:layout_constraintTop_toTopOf="parent"
-           android:layout_marginTop="10dp"
+
            />
         <com.github.mikephil.charting.charts.LineChart
            android:layout_width="match_parent"
            android:layout_height="200dp"
            android:id="@+id/chart2"
            app:layout_constraintTop_toBottomOf="@id/chart1"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             />
         <com.github.mikephil.charting.charts.LineChart
            android:layout_width="match_parent"
            android:layout_height="200dp"
            android:id="@+id/chart3"
            app:layout_constraintTop_toBottomOf="@id/chart2"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
