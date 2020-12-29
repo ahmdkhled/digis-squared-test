@@ -3,11 +3,7 @@ package com.ahmdkhled.digissquared.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
+import androidx.lifecycle.*
 import com.ahmdkhled.digissquared.App
 import com.ahmdkhled.digissquared.Network.Api
 import com.ahmdkhled.digissquared.R
@@ -15,6 +11,8 @@ import com.ahmdkhled.digissquared.repo.RandomNumsRepo
 import com.ahmdkhled.digissquared.viewModel.MainActivityVM
 import com.ahmdkhled.digissquared.viewModel.MainActivityVMFactory
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,17 +31,43 @@ class MainActivity : AppCompatActivity() {
 
         mainActivityVM=ViewModelProvider(this,factory).get(MainActivityVM::class.java)
 
-        val lifecycleOwner:LifecycleOwner=this
 
+
+        pullFromServer()
+
+
+
+
+    }
+
+    fun getSignalValues(){
+        val lifecycleOwner:LifecycleOwner=this
         mainActivityVM.getRandomNumbers()
             .observe(lifecycleOwner, Observer {
                 Log.d(TAG, "onCreate: $it")
             })
-
-
-
-
-
-        
     }
+
+    fun pullFromServer(){
+        lifecycleScope.launch {
+            while (true){
+//                getSignalValues()
+                if (mainActivityVM.stop){
+                    break
+                }else{
+                    Log.d(TAG, "repeate: ")
+                    delay(2000)
+                }
+
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mainActivityVM.stop=true
+
+    }
+
+
 }

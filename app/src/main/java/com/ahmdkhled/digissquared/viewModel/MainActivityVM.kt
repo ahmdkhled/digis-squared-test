@@ -16,10 +16,8 @@ import javax.inject.Inject
 class MainActivityVM @Inject constructor(var randomNumbersRepo:RandomNumsRepo):ViewModel (){
 
     private val TAG = "MainActivityVM"
-    
-    init {
-        Log.d(TAG, "init: ")
-    }
+
+    var stop:Boolean=false
 
     fun getRandomNumbers() = liveData<Res<SignalResponse>>(Dispatchers.IO) {
         emit(Res.LOADING())
