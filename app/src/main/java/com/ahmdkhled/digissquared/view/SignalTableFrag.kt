@@ -33,7 +33,8 @@ class SignalTableFrag :Fragment() {
         (requireActivity().application as App).signalTableFragComponent.inject(this)
 
         binding.signalsTable.adapter=adapter
-        binding.signalsTable.layoutManager=LinearLayoutManager(context)
+        val layoutManager=LinearLayoutManager(context)
+        binding.signalsTable.layoutManager=layoutManager
 
 
         observeSignals()
@@ -49,6 +50,7 @@ class SignalTableFrag :Fragment() {
 
                 if (res!=null&&!res.loading &&res.success&&res.res!=null){
                     adapter.addSignals(res.res!!)
+                    binding.signalsTable.scrollToPosition(adapter.itemCount-1)
                 }
             })
     }
