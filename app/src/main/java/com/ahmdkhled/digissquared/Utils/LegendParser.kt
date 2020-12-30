@@ -14,37 +14,41 @@ import javax.inject.Singleton
 class LegendParser @Inject constructor(){
 
 
+    companion object {
+        var legend:Legend?=null
+        fun getJsonFromAssets(context: Context): Legend? {
 
-    fun getJsonFromAssets(context: Context): Legend? {
+            try {
 
-         try {
+                val inputStream: InputStream = context.getAssets().open("Legend.json")
+                val size: Int = inputStream.available()
+                val buffer = ByteArray(size)
+                inputStream.read(buffer)
+                inputStream.close()
+                val jsonString = String(buffer, Charsets.UTF_8)
+                val gson = Gson()
+                val legend = gson.fromJson(jsonString, Legend::class.java)
+                Log.d("parse", "getJsonFromAssets: $jsonString")
+                Log.d("parse", "getJsonFromAssets: $legend")
+                return legend
 
-             val inputStream: InputStream = context.getAssets().open("Legend.json")
-             val size: Int = inputStream.available()
-             val buffer = ByteArray(size)
-             inputStream.read(buffer)
-             inputStream.close()
-             val jsonString=String(buffer, Charsets.UTF_8)
-             val gson = Gson()
-             val legend= gson.fromJson(jsonString,Legend::class.java)
-             Log.d("parse", "getJsonFromAssets: $jsonString")
-             Log.d("parse", "getJsonFromAssets: $legend")
-             return legend
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.d("TAG", "getJsonFromAssets: ${e.message}")
+                return null
+            }
 
-        } catch (e: Exception) {
-            e.printStackTrace()
-             Log.d("TAG", "getJsonFromAssets: ${e.message}")
-             return null
         }
-
     }
-
     fun getColor(context: Context,value:Double,type:Int):String?{
-        val legend=getJsonFromAssets(context)
+        if (legend==null)
+        legend=getJsonFromAssets(context)
+
         if (legend==null) return null
-        var ranges=legend.RSRP
-        if (type==1) ranges=legend.RSRQ
-        if (type==2)ranges=legend.SINR
+
+        var ranges= legend!!.RSRP
+        if (type==1) ranges= legend!!.RSRQ
+        if (type==2)ranges= legend!!.SINR
 
         for (rangeColor in ranges){
             var from:Double
