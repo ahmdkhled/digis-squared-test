@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var mainActivityVM: MainActivityVM
     @Inject lateinit var factory:MainActivityVMFactory
     @Inject lateinit var api: Api
-    lateinit var chartHelper:ChartHelper
     @Inject lateinit var signalsOserver:MutableLiveData<Res<SignalResponse?>>
     private  val TAG = "MainActivity"
 

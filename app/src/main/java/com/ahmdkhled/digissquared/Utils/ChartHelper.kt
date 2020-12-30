@@ -13,10 +13,11 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 import kotlin.math.min
 
-class ChartHelper {
+class ChartHelper @Inject constructor(){
      var dataSets=ArrayList<LineDataSet>()
     init {
         dataSets.add(createSet("RSRP",Color.BLUE))
