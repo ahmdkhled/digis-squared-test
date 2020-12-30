@@ -9,15 +9,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ahmdkhled.digissquared.App
 import com.ahmdkhled.digissquared.R
+import com.ahmdkhled.digissquared.Utils.LegendParser
 import com.ahmdkhled.digissquared.adapters.TableAdapter
-import com.ahmdkhled.digissquared.databinding.FragSignalChartBinding
 import com.ahmdkhled.digissquared.databinding.FragSignalTableBinding
+import javax.inject.Inject
 
 class SignalTableFrag :Fragment() {
 
     lateinit var binding:FragSignalTableBinding
-    lateinit var adapter:TableAdapter
+    @Inject lateinit var adapter:TableAdapter
     private  val TAG = "SignalChartFrag"
 
     override fun onCreateView(
@@ -27,7 +29,8 @@ class SignalTableFrag :Fragment() {
     ): View? {
 
         binding=DataBindingUtil.inflate(inflater, R.layout.frag_signal_table,container,false)
-        adapter= TableAdapter()
+
+        (requireActivity().application as App).signalTableFragComponent.inject(this)
 
         binding.signalsTable.adapter=adapter
         binding.signalsTable.layoutManager=LinearLayoutManager(context)

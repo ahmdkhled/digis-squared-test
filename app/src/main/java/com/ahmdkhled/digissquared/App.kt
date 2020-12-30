@@ -8,6 +8,7 @@ class App :Application() {
 
     lateinit var mainActivityComponent:MainActivityComponent
     lateinit var signalChartFragComponent:SignalChartFragComponent
+    lateinit var signalTableFragComponent:SignalTableFragmentComponent
 
     override fun onCreate() {
         super.onCreate()
@@ -19,6 +20,11 @@ class App :Application() {
 
         signalChartFragComponent=DaggerSignalChartFragComponent.builder()
             .build()
+
+        signalTableFragComponent=DaggerSignalTableFragmentComponent
+                .builder()
+                .appModule(AppModule(this))
+                .build()
 
     }
 
