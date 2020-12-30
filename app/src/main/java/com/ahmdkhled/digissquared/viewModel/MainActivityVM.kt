@@ -19,7 +19,7 @@ class MainActivityVM @Inject constructor(var randomNumbersRepo:RandomNumsRepo):V
 
     var stop:Boolean=false
 
-    fun getRandomNumbers() = liveData<Res<SignalResponse>>(Dispatchers.IO) {
+    fun getRandomNumbers() = liveData<Res<SignalResponse?>>(Dispatchers.IO) {
         emit(Res.LOADING())
         Log.d(TAG, "getRandomNumbers: ")
 

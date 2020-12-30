@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.*
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.ahmdkhled.digissquared.App
@@ -16,6 +13,8 @@ import com.ahmdkhled.digissquared.Network.Api
 import com.ahmdkhled.digissquared.R
 import com.ahmdkhled.digissquared.Utils.ChartHelper
 import com.ahmdkhled.digissquared.databinding.ActivityMainBinding
+import com.ahmdkhled.digissquared.model.Res
+import com.ahmdkhled.digissquared.model.SignalResponse
 import com.ahmdkhled.digissquared.viewModel.MainActivityVM
 import com.ahmdkhled.digissquared.viewModel.MainActivityVMFactory
 import com.github.mikephil.charting.components.Legend
@@ -38,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     @Inject lateinit var factory:MainActivityVMFactory
     @Inject lateinit var api: Api
     lateinit var chartHelper:ChartHelper
+    @Inject lateinit var signalsOserver:MutableLiveData<Res<SignalResponse?>>
     private  val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,24 +60,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun getSignalValues(){
-        val lifecycleOwner:LifecycleOwner=this
-        mainActivityVM.getRandomNumbers()
-            .observe(lifecycleOwner, Observer {res->
-                Log.d(TAG, "onCreate: $res")
+    private fun getSignalValues(){
 
-                if (res.success&&!res.loading){
-                    val signalRes=res.res
 
-                }
+        mainActivityVM.getRandomNumbers().observe(this, Observer {
+            signalsOserver.value=it
+        })
+        Log.d(TAG, "observeSignals: ma")
 
-            })
     }
 
-    fun pullFromServer(){
+    private fun pullFromServer(){
         lifecycleScope.launch {
             while (true){
-//                getSignalValues()
                 if (mainActivityVM.stop){
                     break
                 }else{
