@@ -21,20 +21,24 @@ import kotlin.math.min
 class ChartHelper @Inject constructor(){
      var dataSets=ArrayList<LineDataSet>()
     init {
+        //dataset of graph one
         dataSets.add(createSet("RSRP",Color.BLUE))
         dataSets.add(createSet("RSRQ",Color.RED))
         dataSets.add(createSet("SINR",Color.GREEN))
 
+        //dataset of graph two
         dataSets.add(createSet("RSRP",Color.BLUE))
         dataSets.add(createSet("RSRQ",Color.RED))
         dataSets.add(createSet("SINR",Color.GREEN))
 
+        //dataset of graph three
         dataSets.add(createSet("RSRP",Color.BLUE))
         dataSets.add(createSet("RSRQ",Color.RED))
         dataSets.add(createSet("SINR",Color.GREEN))
 
     }
 
+    // function for creating dataset for each graph
     private fun createSet(label:String,color:Int): LineDataSet {
         val set = LineDataSet(null, label)
         set.axisDependency = YAxis.AxisDependency.LEFT
@@ -65,16 +69,6 @@ class ChartHelper @Inject constructor(){
         graph.getDescription().setText("time")
         graph.getDescription().setTextColor(Color.WHITE)
 
-        // get the legend (only possible after setting data)
-
-        // get the legend (only possible after setting data)
-//        val l: Legend = memGraph.getLegend()
-//
-//        // modify the legend ...
-//
-//        // modify the legend ...
-//        l.form = Legend.LegendForm.LINE
-//        l.textColor = Color.WHITE
 
         val xl: XAxis = graph.getXAxis()
         xl.position=XAxis.XAxisPosition.BOTTOM_INSIDE
@@ -84,7 +78,7 @@ class ChartHelper @Inject constructor(){
         xl.isEnabled = true
         xl.valueFormatter=MyXAxisValueFormatter()
 
-        //signal axis |
+        //signal axis  |
         val leftAxis: YAxis = graph.getAxisLeft()
         leftAxis.textColor = Color.WHITE
         leftAxis.axisMaximum = max
@@ -95,6 +89,7 @@ class ChartHelper @Inject constructor(){
         val rightAxis: YAxis = graph.getAxisRight()
         rightAxis.isEnabled = false
 
+        // assign datasets to each graph
         var mData=LineData(dataSets[0],dataSets[1],dataSets[2])
         if (index==1){
              mData=LineData(dataSets[3],dataSets[4],dataSets[5]);
@@ -130,7 +125,7 @@ class ChartHelper @Inject constructor(){
         graph.moveViewToX(data.entryCount.toFloat())
     }
 
-
+    // value formatter class for putting time on x axis
     class MyXAxisValueFormatter : ValueFormatter() {
         override fun getFormattedValue(value: Float): String {
             val hour=Calendar.getInstance().get(Calendar.HOUR_OF_DAY)

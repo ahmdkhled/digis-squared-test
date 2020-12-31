@@ -50,38 +50,27 @@ class MainActivity : AppCompatActivity() {
 
         pullFromServer()
 
-
-
-
-
     }
 
     private fun getSignalValues(){
-
-
         mainActivityVM.getRandomNumbers().observe(this, Observer {
             signalsOserver.value=it
         })
-        Log.d(TAG, "observeSignals: ma")
-
     }
 
+    // get data from server each 2 seconds
     private fun pullFromServer(){
         lifecycleScope.launch {
             while (true){
                 if (mainActivityVM.stop){
                     break
                 }else{
-                    Log.d(TAG, "repeate: ")
                     getSignalValues()
                     delay(2000)
                 }
-
             }
         }
     }
-
-
 
     override fun onDestroy() {
         super.onDestroy()

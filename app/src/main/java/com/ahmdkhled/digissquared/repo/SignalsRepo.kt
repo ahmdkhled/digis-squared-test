@@ -17,11 +17,9 @@ class SignalsRepo @Inject constructor (var api :Api) {
     }
 
     suspend fun getRandomNumbers(): Response<SignalResponse>? {
-        Log.d("MainActivityVM", "getRandomNumbers: ")
         try {
             return api.random()
         }catch (ex:Exception){
-            Log.d("MainActivityVM", "getRandomNumbers: $ex")
             return null
         }
     }

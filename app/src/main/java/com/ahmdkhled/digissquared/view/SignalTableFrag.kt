@@ -38,6 +38,7 @@ class SignalTableFrag :Fragment() {
         binding.signalsTable.layoutManager=layoutManager
 
         val signals=(activity as MainActivity).mainActivityVM.signals
+        // add signals after rotaion
         adapter.addSignals(signals)
         observeSignals()
 

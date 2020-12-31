@@ -16,6 +16,7 @@ class LegendParser @Inject constructor(){
 
     companion object {
         var legend:Legend?=null
+        // extract legend data from legend.json file
         fun getJsonFromAssets(context: Context): Legend? {
 
             try {
@@ -40,6 +41,7 @@ class LegendParser @Inject constructor(){
 
         }
     }
+    // get color based on legend instructions
     fun getColor(context: Context,value:Double,type:Int):String?{
         if (legend==null)
         legend=getJsonFromAssets(context)

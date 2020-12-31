@@ -39,7 +39,7 @@ class SignalChartFrag :Fragment() {
         chartHelper.setupGraph(binding.chart3,-10f,30f,2)
 
 
-
+        // get chart data after rotation
         for (signalResponse in mainActivityVM.signals){
             populateChart(signalResponse)
         }
