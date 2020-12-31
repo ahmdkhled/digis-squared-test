@@ -21,6 +21,7 @@ class SignalChartFrag :Fragment() {
     lateinit var binding:FragSignalChartBinding
     @Inject lateinit var chartHelper: ChartHelper
     private  val TAG = "SignalChartFrag"
+    lateinit var mainActivityVM: MainActivityVM
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,13 +30,19 @@ class SignalChartFrag :Fragment() {
     ): View? {
 
         binding=DataBindingUtil.inflate(inflater, R.layout.frag_signal_chart,container,false)
-
+        mainActivityVM=(activity as MainActivity).mainActivityVM
         (requireActivity().application as App).signalChartFragComponent.inject(this)
 
 
         chartHelper.setupGraph(binding.chart1,-140f,-60f)
         chartHelper.setupGraph(binding.chart2,-30f,0f)
         chartHelper.setupGraph(binding.chart3,-10f,30f)
+
+
+
+        for (signalResponse in mainActivityVM.signals){
+            populateChart(signalResponse)
+        }
 
         observeSignals()
 
