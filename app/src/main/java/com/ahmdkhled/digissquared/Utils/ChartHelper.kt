@@ -51,7 +51,7 @@ class ChartHelper @Inject constructor(){
         return set
     }
 
-    fun setupGraph(graph:LineChart,min:Float,max:Float){
+    fun setupGraph(graph:LineChart,min:Float,max:Float,index: Int){
 
         graph.setTouchEnabled(true)
         graph.setDragEnabled(true)
@@ -95,9 +95,14 @@ class ChartHelper @Inject constructor(){
         val rightAxis: YAxis = graph.getAxisRight()
         rightAxis.isEnabled = false
 
-        val mData=LineData(dataSets[0],dataSets[1],dataSets[2],
-                dataSets[3],dataSets[4],dataSets[5],dataSets[6]
-                ,dataSets[7],dataSets[8])
+        var mData=LineData(dataSets[0],dataSets[1],dataSets[2])
+        if (index==1){
+             mData=LineData(dataSets[3],dataSets[4],dataSets[5]);
+
+        }else if (index==2){
+             mData=LineData(dataSets[6],dataSets[7],dataSets[8]);
+
+        }
         graph.data=mData
     }
 
