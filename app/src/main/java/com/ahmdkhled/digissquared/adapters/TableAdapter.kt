@@ -43,6 +43,10 @@ class TableAdapter @Inject constructor(val context: Context,val legendParser: Le
         signals.add(signalsResopsne)
         notifyItemInserted(signals.size)
     }
+    fun addSignals(signalsResopsneList:ArrayList<SignalResponse>){
+        signals.addAll(signalsResopsneList)
+        notifyItemInserted(signals.size)
+    }
 
     class TableRowViewHolder(val binding: LayoutTableRowBinding) :RecyclerView.ViewHolder(binding.root){
         fun populateColors(RSRP_color: String?, RSRQ_color: String?, SINR_color: String?) {

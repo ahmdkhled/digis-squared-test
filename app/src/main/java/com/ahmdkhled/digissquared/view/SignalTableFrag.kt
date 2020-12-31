@@ -15,6 +15,7 @@ import com.ahmdkhled.digissquared.Utils.LegendParser
 import com.ahmdkhled.digissquared.adapters.TableAdapter
 import com.ahmdkhled.digissquared.databinding.FragSignalTableBinding
 import javax.inject.Inject
+import kotlin.math.sign
 
 class SignalTableFrag :Fragment() {
 
@@ -36,7 +37,8 @@ class SignalTableFrag :Fragment() {
         val layoutManager=LinearLayoutManager(context)
         binding.signalsTable.layoutManager=layoutManager
 
-
+        val signals=(activity as MainActivity).mainActivityVM.signals
+        adapter.addSignals(signals)
         observeSignals()
 
 
