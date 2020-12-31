@@ -119,7 +119,7 @@ class ChartHelper @Inject constructor(){
         graph.notifyDataSetChanged()
 
         // limit the number of visible entries
-        //graph.setVisibleXRangeMaximum(120F)
+        graph.setVisibleXRangeMaximum(10F)
 
         // move to the latest entry
         graph.moveViewToX(data.entryCount.toFloat())
