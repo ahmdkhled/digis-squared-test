@@ -24,6 +24,7 @@ class App :Application() {
         signalTableFragComponent=DaggerSignalTableFragmentComponent
                 .builder()
                 .appModule(AppModule(this))
+                .signalTableFragModule(SignalTableFragModule(this))
                 .build()
 
     }

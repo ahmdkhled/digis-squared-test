@@ -21,6 +21,8 @@ class SignalTableFrag :Fragment() {
 
     lateinit var binding:FragSignalTableBinding
     @Inject lateinit var adapter:TableAdapter
+    @Inject lateinit var layoutManager:LinearLayoutManager
+
     private  val TAG = "SignalChartFrag"
 
     override fun onCreateView(
@@ -34,7 +36,6 @@ class SignalTableFrag :Fragment() {
         (requireActivity().application as App).signalTableFragComponent.inject(this)
 
         binding.signalsTable.adapter=adapter
-        val layoutManager=LinearLayoutManager(context)
         binding.signalsTable.layoutManager=layoutManager
 
         val signals=(activity as MainActivity).mainActivityVM.signals
