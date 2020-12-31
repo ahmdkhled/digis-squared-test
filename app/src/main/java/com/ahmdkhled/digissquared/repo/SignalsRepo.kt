@@ -7,9 +7,10 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.awaitResponse
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.math.sign
-
-class RandomNumsRepo @Inject constructor (var api :Api) {
+@Singleton
+class SignalsRepo @Inject constructor (var api :Api) {
 
     init {
         Log.d("MainActivityVM", "init repo: ")

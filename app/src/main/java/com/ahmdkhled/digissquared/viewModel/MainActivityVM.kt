@@ -1,19 +1,15 @@
 package com.ahmdkhled.digissquared.viewModel
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.ahmdkhled.digissquared.model.Res
 import com.ahmdkhled.digissquared.model.SignalResponse
-import com.ahmdkhled.digissquared.repo.RandomNumsRepo
+import com.ahmdkhled.digissquared.repo.SignalsRepo
 import kotlinx.coroutines.Dispatchers
-import retrofit2.Response
 import javax.inject.Inject
 
-class MainActivityVM @Inject constructor(var randomNumbersRepo:RandomNumsRepo):ViewModel (){
+class MainActivityVM @Inject constructor(var randomNumbersRepo:SignalsRepo):ViewModel (){
 
     private val TAG = "MainActivityVM"
 
