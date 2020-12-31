@@ -39,6 +39,8 @@ class SignalChartFrag :Fragment() {
 
         observeSignals()
 
+        //populateChart(SignalResponse(-100.0,-20.0,10.0))
+
 
         return binding.root
     }
@@ -57,20 +59,20 @@ class SignalChartFrag :Fragment() {
     private fun populateChart(signalRes: SignalResponse?) {
         if (signalRes?.RSRP!=null){
             chartHelper.addEntry(binding.chart1, signalRes.RSRP.toFloat(),0)
-            chartHelper.addEntry(binding.chart2, signalRes.RSRP.toFloat(),0)
-            chartHelper.addEntry(binding.chart3, signalRes.RSRP.toFloat(),0)
+            chartHelper.addEntry(binding.chart2, signalRes.RSRP.toFloat(),3)
+            chartHelper.addEntry(binding.chart3, signalRes.RSRP.toFloat(),6)
 
         }
         if (signalRes?.RSRQ!=null){
             chartHelper.addEntry(binding.chart1,signalRes.RSRQ.toFloat(),1)
-            chartHelper.addEntry(binding.chart2,signalRes.RSRQ.toFloat(),1)
-            chartHelper.addEntry(binding.chart3,signalRes.RSRQ.toFloat(),1)
+            chartHelper.addEntry(binding.chart2,signalRes.RSRQ.toFloat(),4)
+            chartHelper.addEntry(binding.chart3,signalRes.RSRQ.toFloat(),7)
 
         }
         if (signalRes?.SINR!=null){
             chartHelper.addEntry(binding.chart1,signalRes.SINR.toFloat(),2)
-            chartHelper.addEntry(binding.chart2,signalRes.SINR.toFloat(),2)
-            chartHelper.addEntry(binding.chart3,signalRes.SINR.toFloat(),2)
+            chartHelper.addEntry(binding.chart2,signalRes.SINR.toFloat(),5)
+            chartHelper.addEntry(binding.chart3,signalRes.SINR.toFloat(),8)
 
         }
     }

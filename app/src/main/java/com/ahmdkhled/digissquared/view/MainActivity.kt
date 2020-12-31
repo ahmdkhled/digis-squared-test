@@ -46,10 +46,7 @@ class MainActivity : AppCompatActivity() {
         mainActivityVM=ViewModelProvider(this,factory).get(MainActivityVM::class.java)
 
         NavigationUI.setupWithNavController(binding.bottomnavigationView,Navigation.findNavController(this,R.id.nav_graph))
-
-
-
-
+        mainActivityVM.stop=false
 
         pullFromServer()
 

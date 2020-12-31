@@ -18,6 +18,7 @@ class MainActivityVM @Inject constructor(var randomNumbersRepo:RandomNumsRepo):V
     private val TAG = "MainActivityVM"
 
     var stop:Boolean=false
+    var signals=ArrayList<SignalResponse>()
 
     fun getRandomNumbers() = liveData<Res<SignalResponse?>>(Dispatchers.IO) {
         emit(Res.LOADING())
@@ -32,6 +33,7 @@ class MainActivityVM @Inject constructor(var randomNumbersRepo:RandomNumsRepo):V
             val signalResponse=response.body()
             if (response.isSuccessful&&signalResponse!=null){
                 emit(Res.SUCCCESS(signalResponse))
+                signals.add(signalResponse)
                 Log.d(TAG, "getRandomNumbers: $signalResponse")
             }else{
                 Log.d(TAG, "error getRandomNumbers: ")
@@ -44,5 +46,7 @@ class MainActivityVM @Inject constructor(var randomNumbersRepo:RandomNumsRepo):V
 
 
     }
+
+
 
     }

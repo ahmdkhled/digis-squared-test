@@ -1,6 +1,7 @@
 package com.ahmdkhled.digissquared.Utils
 
 import android.graphics.Color
+import android.util.Log
 import com.ahmdkhled.digissquared.R
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
@@ -20,6 +21,14 @@ import kotlin.math.min
 class ChartHelper @Inject constructor(){
      var dataSets=ArrayList<LineDataSet>()
     init {
+        dataSets.add(createSet("RSRP",Color.BLUE))
+        dataSets.add(createSet("RSRQ",Color.RED))
+        dataSets.add(createSet("SINR",Color.GREEN))
+
+        dataSets.add(createSet("RSRP",Color.BLUE))
+        dataSets.add(createSet("RSRQ",Color.RED))
+        dataSets.add(createSet("SINR",Color.GREEN))
+
         dataSets.add(createSet("RSRP",Color.BLUE))
         dataSets.add(createSet("RSRQ",Color.RED))
         dataSets.add(createSet("SINR",Color.GREEN))
@@ -86,16 +95,21 @@ class ChartHelper @Inject constructor(){
         val rightAxis: YAxis = graph.getAxisRight()
         rightAxis.isEnabled = false
 
-        val mData=LineData(dataSets[0],dataSets[1],dataSets[2])
+        val mData=LineData(dataSets[0],dataSets[1],dataSets[2],
+                dataSets[3],dataSets[4],dataSets[5],dataSets[6]
+                ,dataSets[7],dataSets[8])
         graph.data=mData
     }
 
     fun addEntry(graph: LineChart,value :Float,index:Int) {
-
+        Log.d("TAG", "addEntry: $value $index ")
         val data=graph.data
         if (data==null)return
 
-        var set = data.getDataSetByIndex(0)
+        var set = data.getDataSetByIndex(index)
+        Log.d("TAG", "addEntry: $set \n")
+
+
 
         data.addEntry(
             Entry(set.entryCount.toFloat(),value ),index
