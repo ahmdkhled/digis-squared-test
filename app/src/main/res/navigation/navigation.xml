@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/chartFrag"
+    >
+    <fragment
+        android:id="@+id/chartFrag"
+        android:name="com.ahmdkhled.digissquared.view.SignalChartFrag"
+        tools:layout="@layout/frag_signal_chart"
+        />
+
+    <fragment
+        android:id="@+id/tableFrag"
+        android:name="com.ahmdkhled.digissquared.view.SignalTableFrag"
+        tools:layout="@layout/frag_signal_table"
+        />
+
+
+</navigation>
